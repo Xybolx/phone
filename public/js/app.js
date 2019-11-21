@@ -67138,7 +67138,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -73042,15 +73042,6 @@ var Contacts = function Contacts() {
       return console.log(err);
     });
   }, []);
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    var successTimer = setTimeout(setSuccessInfo({
-      isSuccess: false,
-      name: ""
-    }), 5000);
-    return function () {
-      clearTimeout(successTimer);
-    };
-  }, []);
   Object(_useInterval__WEBPACK_IMPORTED_MODULE_5__["default"])(function () {
     if (!results.length && search) {
       setCount(function (count) {
@@ -73066,7 +73057,7 @@ var Contacts = function Contacts() {
   var resetSuccess = function resetSuccess() {
     setSuccessInfo({
       isSuccess: false,
-      name: ""
+      message: ""
     });
   };
 
@@ -73074,11 +73065,11 @@ var Contacts = function Contacts() {
     deletePost(contact.id);
     setSuccessInfo({
       isSuccess: true,
-      name: contact.fname + " " + contact.lname + " was deleted!"
+      message: contact.fname + " " + contact.lname + " was deleted!"
     });
   };
 
-  var postsList = posts.length && posts.map(function (contact) {
+  var postsList = !results.length && posts.map(function (contact) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       className: "contact-item",
       key: contact.id
@@ -73200,8 +73191,8 @@ var Contacts = function Contacts() {
       }
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       style: {
-        maxHeight: 40,
-        maxWidth: 40
+        height: 40,
+        width: 40
       },
       src: "storage/Images/".concat(contact.src),
       className: "img-fluid card-img mr-2",
@@ -73228,7 +73219,7 @@ var Contacts = function Contacts() {
       className: "fas fa-times fa-fw text-danger"
     }), " No")))))));
   });
-  var resultsList = results.map(function (contact) {
+  var resultsList = results.length && results.map(function (contact) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       className: "contact-item",
       key: contact.id
@@ -73350,8 +73341,8 @@ var Contacts = function Contacts() {
       }
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       style: {
-        maxHeight: 40,
-        maxWidth: 40
+        height: 40,
+        width: 40
       },
       src: "storage/Images/".concat(contact.src),
       className: "img-fluid card-img mr-2",
@@ -73382,11 +73373,14 @@ var Contacts = function Contacts() {
     className: "text-center container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-center mt-3"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    className: "display-4"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-users text-primary"
-  }), " Contacts"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "h1"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "img-fluid",
+    src: "storage/Images/mesa-phone.png",
+    alt: "",
+    loading: "eager"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "lead"
   }, "Search by first/last name or job title..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-6 offset-md-3"
@@ -73398,7 +73392,7 @@ var Contacts = function Contacts() {
     name: "search",
     value: search || "",
     onChange: handleChange,
-    type: "search",
+    type: "text",
     className: "form-inline form-control rounded-left",
     placeholder: "Search...",
     "aria-label": "search",
@@ -73423,7 +73417,7 @@ var Contacts = function Contacts() {
     role: "alert"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "fas fa-check text-success"
-  }), " ", successInfo.name, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }), " ", successInfo.message, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: resetSuccess,
     type: "button",
     className: "close",
@@ -73431,24 +73425,17 @@ var Contacts = function Contacts() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     "aria-hidden": "true"
   }, "\xD7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "my-5"
+    className: "mb-5"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "display-4",
-    style: results.length ? {
-      display: "block"
-    } : {
-      display: "none"
-    }
-  }, results && results.length, " Result", results.length > 1 ? "s" : "", ":"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "list-unstyled"
-  }, posts.length && !search ? postsList : results.length && search ? resultsList : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "contact-item text-dark"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, posts.length && !search ? postsList : results.length ? resultsList : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "contact-item text-dark mt-5"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     className: "display-4 d-flex justify-content-center"
-  }, "Loading...", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-phone fa-pulse text-success",
+  }, !results.length && !posts.length ? "Loading..." : posts.length && !results.length ? "No Results..." : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-phone fa-pulse text-info",
     role: "status"
   })))))));
 };
@@ -73562,7 +73549,7 @@ var Create = function Create() {
     }).then(function () {
       return setSuccessInfo({
         isSuccess: true,
-        name: fname + " " + lname + " was created!"
+        message: "".concat(fname, " ").concat(lname, " was created!")
       });
     }).then(function () {
       return handleReset();
@@ -73578,14 +73565,13 @@ var Create = function Create() {
   };
 
   var handleReset = function handleReset() {
-    handleClearForm();
     resetValidate();
+    handleClearForm();
     $('#navbarsExampleDefault').collapse('hide');
-    $('#exampleModalCenter').modal('hide');
     setRedirect(true);
   };
 
-  if (redirect) {
+  if (window.location.pathname != "/posts" && redirect) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
       to: "/posts"
     });
@@ -73791,7 +73777,7 @@ var Edit = function Edit(_ref) {
     }).then(function () {
       return setSuccessInfo({
         isSuccess: true,
-        name: fname + " " + lname + " was updated!"
+        message: "".concat(fname, " ").concat(lname, " was updated!")
       });
     }).then($("#editModalCenter".concat(contact.id)).modal('hide'))["catch"](function (err) {
       return console.log(err);
@@ -73931,41 +73917,46 @@ function Example() {
     className: "jumbotron jumbotron-fluid"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    className: "display-4"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    style: {
-      color: "tomato"
-    },
-    className: "fas fa-tachometer-alt"
-  }), " Dashboard"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
       height: 400
     },
-    className: "fa-stack fa-8x bg-dark"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "fa-stack fa-8x bg-dark rounded-lg border border-primary shadow-lg"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     style: {
+      marginTop: -110
+    },
+    className: "img-fluid",
+    src: "storage/Images/mesa-phone.png",
+    alt: ""
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    style: {
+      textShadow: "1px 2px 2px slateblue",
       writingMode: "vertical-rl",
       textOrientation: "upright",
       letterSpacing: 5,
       fontSize: 45,
       marginLeft: 8,
-      marginTop: 25
+      marginTop: -150
     },
-    className: "text-white border border-warning"
+    className: "text-white border border-warning rounded-lg"
   }, "Phone"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "fas fa-mobile-alt fa-stack-2x fa-inverse"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fab fa-laravel fa-stack-1x text-danger",
+    style: {
+      color: "tomato"
+    },
+    className: "fab fa-laravel fa-stack-1x",
     "data-fa-transform": "shrink-6 up-8"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     style: {
-      color: "seagreen"
+      color: "lightseagreen"
     },
     className: "fab fa-react fa-stack-1x",
     "data-fa-transform": "shrink-6 down-2"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     style: {
+      textShadow: "1px 2px 2px slateblue",
       writingMode: "vertical-lr",
       textOrientation: "upright",
       letterSpacing: 21,
@@ -73973,7 +73964,7 @@ function Example() {
       marginLeft: 225,
       marginTop: -340
     },
-    className: "text-white border border-warning"
+    className: "text-white border border-warning rounded-lg"
   }, "Book"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
       marginTop: -125
@@ -74000,6 +73991,160 @@ function Example() {
 
 /***/ }),
 
+/***/ "./resources/js/components/LogIn.js":
+/*!******************************************!*\
+  !*** ./resources/js/components/LogIn.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_useForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/useForm */ "./resources/js/components/useForm.js");
+/* harmony import */ var _components_SubmitBtn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/SubmitBtn */ "./resources/js/components/SubmitBtn.js");
+/* harmony import */ var _components_CancelBtn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/CancelBtn */ "./resources/js/components/CancelBtn.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+var LogIn = function LogIn() {
+  var _useForm = Object(_components_useForm__WEBPACK_IMPORTED_MODULE_2__["default"])({
+    email: "",
+    password: ""
+  }),
+      _useForm2 = _slicedToArray(_useForm, 3),
+      values = _useForm2[0],
+      handleChange = _useForm2[1],
+      handleClearForm = _useForm2[2];
+
+  var email = values.email,
+      password = values.password;
+
+  var handleSubmit = function handleSubmit(ev) {
+    ev.preventDefault();
+    var user = {
+      email: email,
+      password: password
+    };
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/login", user).then(function (res) {
+      return console.log(res.data);
+    }).then(function () {
+      return handleClearForm();
+    })["catch"](function (err) {
+      return console.log(err);
+    });
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal fade",
+    id: "logInModalCenter",
+    tabIndex: "-1",
+    role: "dialog",
+    "aria-labelledby": "logInModalCenterTitle",
+    "aria-hidden": "true"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-dialog modal-dialog-centered",
+    role: "document"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-header bg-dark text-white"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+    className: "modal-title",
+    id: "logInModalCenterTitle"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    style: {
+      color: "lawngreen"
+    },
+    className: "fas fa-sign-in-alt fa-fw"
+  }), " Login"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "button",
+    className: "close text-danger",
+    "data-dismiss": "modal",
+    "aria-label": "Close"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    "aria-hidden": "true"
+  }, "\xD7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-body"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-danger"
+  }, "*"), " Required field")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: handleSubmit
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-left text-danger"
+  }, "*", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "text-dark",
+    htmlFor: "email"
+  }, "Email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "email",
+    className: "form-control email",
+    name: "email",
+    value: email,
+    onChange: handleChange,
+    required: true,
+    autoComplete: "email"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-left text-danger"
+  }, "*", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "text-dark",
+    htmlFor: "password"
+  }, "Password")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "password",
+    className: "form-control password",
+    name: "password",
+    value: password,
+    onChange: handleChange,
+    required: true,
+    autoComplete: "new-password"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SubmitBtn__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    disabled: !email || !password,
+    icon: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      style: {
+        color: "lawngreen"
+      },
+      className: "fas fa-sign-in-alt fa-fw"
+    }),
+    text: "Submit"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_CancelBtn__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    className: "btn btn-dark ml-2",
+    "data-toggle": "collapse",
+    icon: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "fas fa-times text-danger"
+    }),
+    text: "Close"
+  })))))))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (LogIn);
+
+/***/ }),
+
 /***/ "./resources/js/components/Navbar.js":
 /*!*******************************************!*\
   !*** ./resources/js/components/Navbar.js ***!
@@ -74012,11 +74157,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
  // import EditContext from '../edit_context/EditContext';
 
 var Navbar = function Navbar() {
-  // const { editUser } = useContext(EditContext);
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isOpen = _useState2[0],
+      setIsOpen = _useState2[1];
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
     className: "navbar navbar-expand-md navbar-dark bg-dark"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -74024,21 +74181,17 @@ var Navbar = function Navbar() {
       return $("#navbarsExampleDefault").collapse("hide");
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-    className: "navbar-brand",
+    className: "lead text-white mr-3",
     to: "/"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "fa-stack fa-1x"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-mobile-alt fa-stack-2x fa-inverse",
-    "data-fa-transform": "down-2"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fab fa-laravel fa-stack-1x text-danger",
-    "data-fa-transform": "shrink-6 up-3"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fab fa-react fa-stack-1x text-info",
-    "data-fa-transform": "shrink-6 down-6"
-  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "img-fluid",
+    src: "storage/Images/mesa-phone.png",
+    alt: ""
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "navbar-toggler",
+    onClick: function onClick() {
+      return setIsOpen(!isOpen);
+    },
     type: "button",
     "data-toggle": "collapse",
     "data-target": "#navbarsExampleDefault",
@@ -74051,9 +74204,9 @@ var Navbar = function Navbar() {
     className: "collapse navbar-collapse",
     id: "navbarsExampleDefault"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-    className: "navbar-nav list-group list-group-flush mr-auto text-justify-space-between"
+    className: "navbar-nav mr-auto text-justify-space-between"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "nav-item list-group-item bg-dark border-0",
+    className: "nav-item bg-dark border-0",
     "data-toggle": "collapse",
     "data-target": "#navbarsExampleDefault"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
@@ -74066,7 +74219,7 @@ var Navbar = function Navbar() {
     },
     className: "fas fa-tachometer-alt"
   }), " Dashboard")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "nav-item list-group-item bg-dark border-0",
+    className: "nav-item bg-dark border-0",
     "data-toggle": "collapse",
     "data-target": "#navbarsExampleDefault"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
@@ -74075,7 +74228,33 @@ var Navbar = function Navbar() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "fas fa-users fa-fw text-primary"
   }), " Contacts")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "nav-item list-group-item bg-dark border-0"
+    className: "nav-item bg-dark border-0",
+    "data-toggle": "collapse",
+    "data-target": "#navbarsExampleDefault"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "nav-link",
+    "data-toggle": "modal",
+    "data-target": "#registerModalCenter"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    style: {
+      color: "cyan"
+    },
+    className: "fas fa-address-card fa-fw"
+  }), " Register")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "nav-item bg-dark border-0",
+    "data-toggle": "collapse",
+    "data-target": "#navbarsExampleDefault"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "nav-link",
+    "data-toggle": "modal",
+    "data-target": "#logInModalCenter"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    style: {
+      color: "lawngreen"
+    },
+    className: "fas fa-sign-in-alt fa-fw"
+  }), " Login")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "nav-item bg-dark border-0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: "nav-link",
     "data-toggle": "modal",
@@ -74086,6 +74265,159 @@ var Navbar = function Navbar() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Navbar);
+
+/***/ }),
+
+/***/ "./resources/js/components/Register.js":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Register.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_useForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/useForm */ "./resources/js/components/useForm.js");
+/* harmony import */ var _components_SubmitBtn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/SubmitBtn */ "./resources/js/components/SubmitBtn.js");
+/* harmony import */ var _components_CancelBtn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/CancelBtn */ "./resources/js/components/CancelBtn.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+var Register = function Register() {
+  var _useForm = Object(_components_useForm__WEBPACK_IMPORTED_MODULE_2__["default"])({
+    email: "",
+    password: ""
+  }),
+      _useForm2 = _slicedToArray(_useForm, 3),
+      values = _useForm2[0],
+      handleChange = _useForm2[1],
+      handleClearForm = _useForm2[2];
+
+  var email = values.email,
+      password = values.password;
+
+  var handleSubmit = function handleSubmit(ev) {
+    ev.preventDefault();
+    var user = {
+      email: email,
+      password: password
+    };
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/register", user).then(function (res) {
+      return console.log(res.data);
+    }).then(function () {
+      return handleClearForm();
+    })["catch"](function (err) {
+      return console.log(err);
+    });
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal fade",
+    id: "registerModalCenter",
+    tabIndex: "-1",
+    role: "dialog",
+    "aria-labelledby": "registerModalCenterTitle",
+    "aria-hidden": "true"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-dialog modal-dialog-centered",
+    role: "document"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-header bg-dark text-white"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+    className: "modal-title",
+    id: "registerModalCenterTitle"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    style: {
+      color: "cyan"
+    },
+    className: "fas fa-address-card fa-fw"
+  }), " Register"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "button",
+    className: "close text-danger",
+    "data-dismiss": "modal",
+    "aria-label": "Close"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    "aria-hidden": "true"
+  }, "\xD7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-body"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-danger"
+  }, "*"), " Required field")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: handleSubmit
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-left text-danger"
+  }, "*", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "text-dark",
+    htmlFor: "email"
+  }, "Email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "email",
+    className: "form-control email",
+    name: "email",
+    value: email,
+    onChange: handleChange,
+    required: true,
+    autoComplete: "email"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-left text-danger"
+  }, "*", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "text-dark",
+    htmlFor: "password"
+  }, "Password")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "password",
+    className: "form-control password",
+    name: "password",
+    value: password,
+    onChange: handleChange,
+    required: true,
+    autoComplete: "new-password"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SubmitBtn__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    disabled: !email || !password,
+    icon: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      style: {
+        color: "cyan"
+      },
+      className: "fas fa-address-card fa-fw"
+    }),
+    text: "Submit"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_CancelBtn__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    className: "btn btn-dark ml-2",
+    icon: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "fas fa-times text-danger"
+    }),
+    text: "Close"
+  })))))))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Register);
 
 /***/ }),
 
@@ -74559,6 +74891,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Example__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Example */ "./resources/js/components/Example.js");
 /* harmony import */ var _components_Contacts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Contacts */ "./resources/js/components/Contacts.js");
 /* harmony import */ var _components_Create__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Create */ "./resources/js/components/Create.js");
+/* harmony import */ var _components_Register__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Register */ "./resources/js/components/Register.js");
+/* harmony import */ var _components_LogIn__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/LogIn */ "./resources/js/components/LogIn.js");
+
+
 
 
 
@@ -74567,7 +74903,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Navbar__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Navbar__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Register__WEBPACK_IMPORTED_MODULE_6__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_LogIn__WEBPACK_IMPORTED_MODULE_7__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "modal fade",
     id: "exampleModalCenter",
     tabIndex: "-1",
@@ -74723,7 +75059,7 @@ var SuccessProvider = function SuccessProvider(_ref) {
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     isSuccess: false,
-    name: ""
+    message: ""
   }),
       _useState2 = _slicedToArray(_useState, 2),
       successInfo = _useState2[0],

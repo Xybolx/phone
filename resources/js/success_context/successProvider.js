@@ -5,7 +5,7 @@ const SuccessProvider = ({ children }) => {
 
     const [successInfo, setSuccessInfo] = useState({
         isSuccess: false,
-        name: ""
+        message: ""
     });
 
     const successValue = useMemo(() => ({ successInfo, setSuccessInfo }), [successInfo, setSuccessInfo]);

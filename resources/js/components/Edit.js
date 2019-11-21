@@ -38,7 +38,10 @@ const Edit = ({ contact }) => {
         }
         axios.put(`/api/posts/${contact.id}`, person)
             .then(res => setPosts(res.data))
-            .then(() => setSuccessInfo({ isSuccess: true, name: fname + " " + lname + " was updated!" }))
+            .then(() => setSuccessInfo({ 
+                isSuccess: true, 
+                message: `${fname} ${lname} was updated!` 
+            }))
             .then($(`#editModalCenter${contact.id}`).modal('hide'))
             .catch(err => console.log(err))
     };

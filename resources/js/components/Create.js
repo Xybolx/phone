@@ -50,7 +50,10 @@ const Create = () => {
                     .then(res => setPosts(res.data))
                     .catch(err => console.log(err))
             })
-            .then(() => setSuccessInfo({ isSuccess: true, name: fname + " " + lname + " was created!" }))
+            .then(() => setSuccessInfo({ 
+                isSuccess: true, 
+                message: `${fname} ${lname} was created!` 
+            }))
             .then(() => handleReset())
             .catch(err => console.log(err))
     };
@@ -62,14 +65,13 @@ const Create = () => {
     };
 
     const handleReset = () => {
-        handleClearForm();
         resetValidate();
+        handleClearForm();
         $('#navbarsExampleDefault').collapse('hide');
-        $('#exampleModalCenter').modal('hide');
         setRedirect(true);
     };
 
-    if (redirect) {
+    if (window.location.pathname != "/posts" && redirect) {
         return <Redirect to="/posts" />
     }
 

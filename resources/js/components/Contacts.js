@@ -35,13 +35,6 @@ const Contacts = () => {
             .catch(err => console.log(err));
     }, []);
 
-    useEffect(() => {
-        const successTimer = setTimeout(setSuccessInfo({ isSuccess: false,  name: "" }), 5000);
-        return () => {
-            clearTimeout(successTimer);
-        };
-    }, []);
-
     useInterval(() => {
         if (!results.length && search) {
             setCount(count => count - 1);
@@ -55,7 +48,7 @@ const Contacts = () => {
     const resetSuccess = () => {
         setSuccessInfo({
             isSuccess: false,
-            name: ""
+            message: ""
         });
     };
 
@@ -63,11 +56,11 @@ const Contacts = () => {
         deletePost(contact.id);
         setSuccessInfo({
             isSuccess: true,
-            name: contact.fname + " " + contact.lname + " was deleted!"
+            message: contact.fname + " " + contact.lname + " was deleted!"
         })
     };
 
-    const postsList = posts.length && posts.map(contact => (
+    const postsList = !results.length && posts.map(contact => (
         <li className="contact-item" key={contact.id}>
             <div style={{ paddingTop: 5 }}>
                 <div className="row border-bottom border-dark">
@@ -115,7 +108,7 @@ const Contacts = () => {
                                 Are you sure you want to delete
                                                 <br></br>
                                 <div style={{ maxWidth: "100%", maxHeight: "100%" }}>
-                                    <img style={{ maxHeight: 40, maxWidth: 40 }} src={`storage/Images/${contact.src}`} className="img-fluid card-img mr-2" alt={contact.lname} />
+                                    <img style={{ height: 40, width: 40 }} src={`storage/Images/${contact.src}`} className="img-fluid card-img mr-2" alt={contact.lname} />
                                     {contact.fname} {contact.lname}?
                                 </div>
                             </div>
@@ -130,7 +123,7 @@ const Contacts = () => {
         </li>
     ));
 
-    const resultsList = results.map(contact => (
+    const resultsList = results.length && results.map(contact => (
         <li className="contact-item" key={contact.id}>
             <div style={{ paddingTop: 5 }}>
                 <div className="row border-bottom border-dark">
@@ -178,7 +171,7 @@ const Contacts = () => {
                                 Are you sure you want to delete
                                                 <br></br>
                                 <div style={{ maxWidth: "100%", maxHeight: "100%" }}>
-                                    <img style={{ maxHeight: 40, maxWidth: 40 }} src={`storage/Images/${contact.src}`} className="img-fluid card-img mr-2" alt={contact.lname} />
+                                    <img style={{ height: 40, width: 40 }} src={`storage/Images/${contact.src}`} className="img-fluid card-img mr-2" alt={contact.lname} />
                                     {contact.fname} {contact.lname}?
                                 </div>
                             </div>
@@ -196,13 +189,17 @@ const Contacts = () => {
     return (
         <div className="text-center container">
             <div className="text-center mt-3">
-                <h1 className="display-4"><i className="fas fa-users text-primary" /> Contacts</h1>
+                <div className="h1">
+                    {/* <span style={{ textShadow: "1px 2px 2px slateblue", letterSpacing: 5, fontSize: 45 }} className="text-light h2">Phone</span> */}
+                    <img className="img-fluid" src="storage/Images/mesa-phone.png" alt="" loading="eager"></img>
+                    {/* <span style={{ textShadow: "1px 2px 2px slateblue", letterSpacing: 5, fontSize: 45 }} className="text-light h2">Book</span> */}
+                </div>
                 <p className="lead">
                     Search by first/last name or job title...
                 </p>
                 <div className="col-md-6 offset-md-3">
                     <form onSubmit={handleSubmit} className="input-group mb-3 my-lg-3">
-                        <input id="search" name="search" value={search || ""} onChange={handleChange} type="search" className="form-inline form-control rounded-left" placeholder="Search..." aria-label="search" aria-describedby="button-addon4" autoComplete="off" />
+                        <input id="search" name="search" value={search || ""} onChange={handleChange} type="text" className="form-inline form-control rounded-left" placeholder="Search..." aria-label="search" aria-describedby="button-addon4" autoComplete="off" />
                         <div className="input-group-append" id="button-addon4">
                             <button className="btn btn-dark my-sm-0" type="submit"><i className="fas fa-search text-success" /> Reset</button>
                         </div>
@@ -210,26 +207,24 @@ const Contacts = () => {
                 </div>
             </div>
             <div style={successInfo.isSuccess ? { display: "block" } : { display: "none" }} id="success-alert" className="alert alert-success fade show" role="alert">
-                <i className="fas fa-check text-success" /> {successInfo.name}
+                <i className="fas fa-check text-success" /> {successInfo.message}
                 <button onClick={resetSuccess} type="button" className="close" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div className="my-5">
+            <div className="mb-5">
                 <div className='text-center'>
-                    <div className="display-4" style={results.length ? { display: "block" } : { display: "none" }}>
-                        {results && results.length} Result{results.length > 1 ? "s" : ""}:
-                    </div>
                     <ul className='list-unstyled'>
                         {posts.length && !search ?
                             postsList :
-                            results.length && search ?
+                            results.length ?
                                 resultsList :
-                                <li className="contact-item text-dark">
-                                    <div className="display-4 d-flex justify-content-center">
-                                        Loading...
-                                        <i className="fas fa-phone fa-pulse text-success" role="status"></i>
-                                    </div>
+                                <li className="contact-item text-dark mt-5">
+                                    <h1 className="display-4 d-flex justify-content-center">
+                                        {!results.length && !posts.length ? "Loading..." : posts.length && !results.length ? "No Results..." : ""}
+                                        {/* <img className="img-fluid" src="storage/Images/mesa-phone.png" alt=""></img> */}
+                                        <i className="fas fa-phone fa-pulse text-info" role="status" />
+                                    </h1>
                                 </li>}
                     </ul>
                 </div>

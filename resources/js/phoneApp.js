@@ -4,12 +4,16 @@ import Navbar from './components/Navbar';
 import Example from './components/Example';
 import Contacts from './components/Contacts';
 import Create from './components/Create';
+import Register from './components/Register';
+import LogIn from './components/LogIn';
 
 const App = () => {
 
     return (
         <Router>
             <Navbar />
+            <Register />
+            <LogIn />
             <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
