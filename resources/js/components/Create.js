@@ -16,7 +16,7 @@ const Create = () => {
 
     const [filename, setFilename] = useState("");
 
-    const { setPosts } = useContext(PostsContext);
+    const { posts, setPosts } = useContext(PostsContext);
 
     const { setSuccessInfo } = useContext(SuccessContext);
 
@@ -37,6 +37,7 @@ const Create = () => {
 
     const handleSubmit = ev => {
         ev.preventDefault();
+        const newContact = posts.filter(contact => contact.src === filename);
         const contact = new FormData();
         contact.append('fname', fname);
         contact.append('lname', lname);
@@ -52,7 +53,8 @@ const Create = () => {
             })
             .then(() => setSuccessInfo({ 
                 isSuccess: true, 
-                message: `${fname} ${lname} was created!` 
+                message: `${fname} ${lname} was created!`,
+                image: <img style={{ height: 40, width: 40 }} src={`storage/Images/noimage.png`} className="img-fluid card-img" alt="no img available" />
             }))
             .then(() => handleReset())
             .catch(err => console.log(err))
@@ -68,6 +70,7 @@ const Create = () => {
         resetValidate();
         handleClearForm();
         $('#navbarsExampleDefault').collapse('hide');
+        $('#exampleModalCenter').modal('hide');
         setRedirect(true);
     };
 

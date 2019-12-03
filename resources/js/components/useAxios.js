@@ -27,10 +27,14 @@ const useAxios = search => {
 
     useEffect(() => {
         if (search) {
+            const lowerCaseSearch = search.toLowerCase();
         setResults(posts.filter(post =>
-            post.lname.toLowerCase() === search.toLowerCase() ||
-            post.fname.toLowerCase() === search.toLowerCase() ||
-            post.title.toLowerCase() === search.toLowerCase()))
+            post.phone === search ||
+            post.lname.toLowerCase() === lowerCaseSearch ||
+            post.fname.toLowerCase() === lowerCaseSearch ||
+            (post.fname + " " + post.lname).toLowerCase() === lowerCaseSearch ||
+            (post.lname + " " + post.fname).toLowerCase() === lowerCaseSearch ||
+            post.title.toLowerCase() === lowerCaseSearch))
         }
     }, [search]);
 

@@ -40,7 +40,8 @@ const Edit = ({ contact }) => {
             .then(res => setPosts(res.data))
             .then(() => setSuccessInfo({ 
                 isSuccess: true, 
-                message: `${fname} ${lname} was updated!` 
+                message: `${fname} ${lname} was updated!`,
+                image: <img style={{ height: 40, width: 45 }} src={`storage/Images/${contact.src}`} className="img-fluid card-img" alt={contact.lname} /> 
             }))
             .then($(`#editModalCenter${contact.id}`).modal('hide'))
             .catch(err => console.log(err))

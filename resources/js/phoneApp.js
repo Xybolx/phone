@@ -17,9 +17,9 @@ const App = () => {
             <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
-                        <div className="modal-header bg-dark text-white">
+                        <div className="modal-header bg-dark text-white border-0">
                             <h5 className="modal-title" id="exampleModalCenterTitle"><i className="fas fa-user-plus text-warning" /> Create Contact</h5>
-                            <button onClick={() => $("#navbarsExampleDefault").collapse("hide")} type="button" className="close text-danger" data-dismiss="modal" aria-label="Close">
+                            <button onClick={() => $("#navbarsExampleDefault").collapse("hide")} type="button" className="close text-light" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>

@@ -49,6 +49,25 @@
             height: 5px;
         }
 
+        .bg-dark {
+            background: url("storage/Images/phone-wide.png"), linear-gradient(dodgerblue, black, white);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .btn-dark {
+            background: linear-gradient(dodgerblue, black, white);
+        }
+
+        .btn-dark:hover {
+            background: linear-gradient(whitesmoke, black, dodgerblue);
+        }
+
+        .close {
+            line-height: unset;
+        }
+
         @media (min-width: 1200px) {
             .contact-item,
             .alert {

@@ -28,21 +28,21 @@ const Navbar = () => {
             </button> */}
             <div className="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul className="navbar-nav mr-auto text-justify-space-between">
-                    <li className="nav-item bg-dark border-0" data-toggle="collapse" data-target="#navbarsExampleDefault">
+                    <li className="nav-item border-0" data-toggle="collapse" data-target="#navbarsExampleDefault">
                         <NavLink className="nav-link" exact to="/"><i style={{ color: "tomato" }} className="fas fa-tachometer-alt" /> Dashboard</NavLink>
                     </li>
-                    <li className="nav-item bg-dark border-0" data-toggle="collapse" data-target="#navbarsExampleDefault">
+                    <li className="nav-item border-0" data-toggle="collapse" data-target="#navbarsExampleDefault">
                         <NavLink className="nav-link" to="/posts"><i className="fas fa-users fa-fw text-primary" /> Contacts</NavLink>
                     </li>
-                    <li className="nav-item bg-dark border-0" data-toggle="collapse" data-target="#navbarsExampleDefault">
+                    <li className="nav-item border-0" data-toggle="collapse" data-target="#navbarsExampleDefault">
                         <a className="nav-link" data-toggle="modal" data-target="#registerModalCenter"><i style={{ color: "cyan" }} className="fas fa-address-card fa-fw" /> Register</a>
                         {/* <NavLink className="nav-link" to="/register"><i style={{ color: "cyan" }} className="fas fa-address-card fa-fw" /> Register</NavLink> */}
                     </li>
-                    <li className="nav-item bg-dark border-0" data-toggle="collapse" data-target="#navbarsExampleDefault">
+                    <li className="nav-item border-0" data-toggle="collapse" data-target="#navbarsExampleDefault">
                         {/* <NavLink className="nav-link" to="/login"><i style={{ color: "lawngreen" }} className="fas fa-sign-in-alt fa-fw" /> Login</NavLink> */}
                         <a className="nav-link" data-toggle="modal" data-target="#logInModalCenter"><i style={{ color: "lawngreen" }} className="fas fa-sign-in-alt fa-fw" /> Login</a>
                     </li>
-                    <li className="nav-item bg-dark border-0">
+                    <li className="nav-item border-0">
                         <a className="nav-link" data-toggle="modal" data-target="#exampleModalCenter"><i className="fas fa-user-plus fa-fw text-warning" /> Create</a>
                     </li>
                 </ul>
