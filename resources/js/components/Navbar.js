@@ -17,32 +17,32 @@ const Navbar = () => {
                         <i style={{ color: "lightseagreen" }} className="fab fa-react fa-stack-1x" data-fa-transform="shrink-6 down-6 right-6" />
                     <div style={{ writingMode: "vertical-rl", textOrientation: "upright", letterSpacing: 0, fontSize: 8, marginLeft: 42, marginTop: -46 }} className="border border-warning">Book</div>
                     </span> */}
-                    <img className="img-fluid" src="storage/Images/mesa-phone.png" alt=""></img>
+                    <img className="img-fluid" src="http://www.mpsaz.org/phonebook/images/site-logo-522e280db270a.png" alt=""></img>
                 </NavLink>
             </div>
             <button className="navbar-toggler" onClick={() => setIsOpen(!isOpen)} type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="fas fa-bars fa-2x"></span> 
+                    <span className="fas fa-bars fa-2x"></span>
             </button>
             {/* <button style={!isOpen ? { display: "none" } : { display: "inline" }} className="navbar-toggler" onClick={() => setIsOpen(!isOpen)} type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="fas fa-book-open fa-2x"></span>
             </button> */}
             <div className="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul className="navbar-nav mr-auto text-justify-space-between">
-                    <li className="nav-item bg-dark border-0" data-toggle="collapse" data-target="#navbarsExampleDefault">
+                    <li className="nav-item border-0" data-toggle="collapse" data-target="#navbarsExampleDefault">
                         <NavLink className="nav-link" exact to="/"><i style={{ color: "tomato" }} className="fas fa-tachometer-alt" /> Dashboard</NavLink>
                     </li>
-                    <li className="nav-item bg-dark border-0" data-toggle="collapse" data-target="#navbarsExampleDefault">
+                    <li className="nav-item border-0" data-toggle="collapse" data-target="#navbarsExampleDefault">
                         <NavLink className="nav-link" to="/posts"><i className="fas fa-users fa-fw text-primary" /> Contacts</NavLink>
                     </li>
-                    <li className="nav-item bg-dark border-0" data-toggle="collapse" data-target="#navbarsExampleDefault">
+                    <li className="nav-item border-0" data-toggle="collapse" data-target="#navbarsExampleDefault">
                         <a className="nav-link" data-toggle="modal" data-target="#registerModalCenter"><i style={{ color: "cyan" }} className="fas fa-address-card fa-fw" /> Register</a>
                         {/* <NavLink className="nav-link" to="/register"><i style={{ color: "cyan" }} className="fas fa-address-card fa-fw" /> Register</NavLink> */}
                     </li>
-                    <li className="nav-item bg-dark border-0" data-toggle="collapse" data-target="#navbarsExampleDefault">
+                    <li className="nav-item border-0" data-toggle="collapse" data-target="#navbarsExampleDefault">
                         {/* <NavLink className="nav-link" to="/login"><i style={{ color: "lawngreen" }} className="fas fa-sign-in-alt fa-fw" /> Login</NavLink> */}
                         <a className="nav-link" data-toggle="modal" data-target="#logInModalCenter"><i style={{ color: "lawngreen" }} className="fas fa-sign-in-alt fa-fw" /> Login</a>
                     </li>
-                    <li className="nav-item bg-dark border-0">
+                    <li className="nav-item border-0">
                         <a className="nav-link" data-toggle="modal" data-target="#exampleModalCenter"><i className="fas fa-user-plus fa-fw text-warning" /> Create</a>
                     </li>
                 </ul>

@@ -29,9 +29,9 @@ const LogIn = () => {
         <div className="modal fade" id="logInModalCenter" tabIndex="-1" role="dialog" aria-labelledby="logInModalCenterTitle" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
-                    <div className="modal-header bg-dark text-white">
+                    <div className="modal-header text-white border-0 bg-dark">
                         <h5 className="modal-title" id="logInModalCenterTitle"><i style={{ color: "lawngreen" }} className="fas fa-sign-in-alt fa-fw" /> Login</h5>
-                        <button type="button" className="close text-danger" data-dismiss="modal" aria-label="Close">
+                        <button type="button" className="close text-light" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>

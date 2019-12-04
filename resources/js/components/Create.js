@@ -50,9 +50,9 @@ const Create = () => {
                     .then(res => setPosts(res.data))
                     .catch(err => console.log(err))
             })
-            .then(() => setSuccessInfo({ 
-                isSuccess: true, 
-                message: `${fname} ${lname} was created!` 
+            .then(() => setSuccessInfo({
+                isSuccess: true,
+                message: `${fname} ${lname} was created!`
             }))
             .then(() => handleReset())
             .catch(err => console.log(err))
@@ -76,36 +76,17 @@ const Create = () => {
     }
 
     return (
-        <div>
-            {/* <div className="modal fade" id="successModalCenter" tabIndex="-1" role="dialog" aria-labelledby="successModalCenterTitle" aria-hidden="true">
+        <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
-                        <div className="modal-header bg-dark text-light">
-                            <h5 className="modal-title" id="successModalCenterTitle"><i className="fas fa-check text-success" /> Contact Created!</h5>
-                            <button onClick={handleReset} type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span className="text-danger" aria-hidden="true">&times;</span>
+                        <div className="modal-header text-white border-0 bg-dark">
+                            <h5 className="modal-title" id="exampleModalCenterTitle"><i className="fas fa-user-plus text-warning" /> Create Contact</h5>
+                            <button onClick={() => $("#navbarsExampleDefault").collapse("hide")} type="button" className="close text-light" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div className="modal-body text-center font-weight-bold">
-                            {fname} {lname} was created!
-                        </div>
-                        <div className="modal-footer border-0">
-                            <CancelBtn
-                                className="btn btn-dark"
-                                onClick={handleReset}
-                                icon={<i className="fas fa-check text-success" />}
-                                text="Ok"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div> */}
-            {/* <SuccessModal
-                fname={fname}
-                lname={lname}
-                handleReset={handleReset}
-            /> */}
-            <div className='text-center'>
+                        <div className="modal-body">
+                        <div className='text-center'>
                 <h4><span className='text-danger'>*</span> Required field</h4>
             </div>
             <div className="mb-5">
@@ -221,28 +202,30 @@ const Create = () => {
                             type='file'
                             name='src'
                             onChange={fileOnChange}
-                        // ref={fileInput}
                         />
                     </div>
                     <div className="text-center">
-                        <SubmitBtn
-                            disabled={
-                                !isValidFirstName ||
-                                !isValidLastName ||
-                                !isValidTitle ||
-                                !isValidPhone
-                            }
-                            icon={<i className="far fa-save text-success" />}
-                            text="Save"
-                        />
-                        <CancelBtn
-                            className="btn btn-dark ml-2"
-                            onClick={handleReset}
-                            icon={<i className="fas fa-times text-danger" />}
-                            text="Close"
-                        />
+                                    <SubmitBtn
+                                        disabled={
+                                            !isValidFirstName ||
+                                            !isValidLastName ||
+                                            !isValidTitle ||
+                                            !isValidPhone
+                                        }
+                                        icon={<i className="far fa-save text-success" />}
+                                        text="Save"
+                                    />
+                                    <CancelBtn
+                                        className="btn btn-dark ml-2"
+                                        onClick={handleReset}
+                                        icon={<i className="fas fa-times text-danger" />}
+                                        text="Close"
+                                    />
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     );

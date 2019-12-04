@@ -21,20 +21,35 @@
 
     <style>
 
-        @keyframes Pulse {
+        @keyframes Loading {
+            /* 0% {
+                background: linear-gradient(dodgerblue, black, white);
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+            } */
             0% {
-                height: 0px;
+                background: linear-gradient(dodgerblue, black, white);
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
             }
             50% {
-                height: 25px;
+                background: linear-gradient(white, dodgerblue, black);
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
             }
             100% {
-                height: 50px;
+                background: linear-gradient(white, black, dodgerblue);
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
             }
         }
 
         body {
-            background: white;
+            background: whitesmoke;
         }
 
         a:hover {
@@ -47,6 +62,37 @@
 
         .input-error {
             height: 5px;
+        }
+
+        .bg-dark {
+            background: url("http://www.mpsaz.org/phonebook/images/site-head-bg-522e280da4eb7.png"), linear-gradient(dodgerblue, black, white);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .btn-dark {
+            background: linear-gradient(dodgerblue, black, white);
+        }
+
+        .btn-dark:hover {
+            background: linear-gradient(white, black, dodgerblue);
+        }
+
+        .load {
+            background: url("http://www.mpsaz.org/phonebook/images/site-head-bg-522e280da4eb7.png"), transparent;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-blend-mode: color;
+        }
+
+        .under-load {
+            background: linear-gradient(dodgerblue, black, white);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            animation: Loading 2s infinite linear;
         }
 
         @media (min-width: 1200px) {

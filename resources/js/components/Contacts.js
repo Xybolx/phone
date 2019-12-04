@@ -29,11 +29,11 @@ const Contacts = () => {
         setResults([]);
     };
 
-    useEffect(() => {
-        axios.get('/api/posts')
-            .then(res => setPosts(res.data))
-            .catch(err => console.log(err));
-    }, []);
+    // useEffect(() => {
+    //     axios.get('/api/posts')
+    //         .then(res => setPosts(res.data))
+    //         .catch(err => console.log(err));
+    // }, []);
 
     useInterval(() => {
         if (!results.length && search) {
@@ -82,7 +82,7 @@ const Contacts = () => {
             <div className="modal fade" id={`editModalCenter${contact.id}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
-                        <div className="modal-header bg-dark text-white">
+                        <div className="modal-header text-white loader">
                             <h5 className="modal-title" id="exampleModalCenterTitle"><i style={{ color: "orange" }} className="fas fa-user-edit" /> Edit {contact.fname} {contact.lname}</h5>
                             <button type="button" className="close text-danger" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -97,7 +97,7 @@ const Contacts = () => {
             <div className="modal fade" id={`exampleModalCenter${contact.id}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
-                        <div className="modal-header bg-dark text-light">
+                        <div className="modal-header text-light loader">
                             <h5 className="modal-title" id="exampleModalCenterTitle"><i className="fas fa-exclamation-triangle text-warning" /> Confirm Delete</h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span style={{ color: "red" }} aria-hidden="true">&times;</span>
@@ -145,7 +145,7 @@ const Contacts = () => {
             <div className="modal fade" id={`editModalCenter${contact.id}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
-                        <div className="modal-header bg-dark text-white">
+                        <div className="modal-header text-white loader">
                             <h5 className="modal-title" id="exampleModalCenterTitle"><i style={{ color: "orange" }} className="fas fa-user-edit" /> Edit {contact.fname} {contact.lname}</h5>
                             <button type="button" className="close text-danger" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -160,7 +160,7 @@ const Contacts = () => {
             <div className="modal fade" id={`exampleModalCenter${contact.id}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
-                        <div className="modal-header bg-dark text-light">
+                        <div className="modal-header text-light loader">
                             <h5 className="modal-title" id="exampleModalCenterTitle"><i className="fas fa-exclamation-triangle text-warning" /> Confirm Delete</h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span style={{ color: "red" }} aria-hidden="true">&times;</span>
@@ -189,11 +189,11 @@ const Contacts = () => {
     return (
         <div className="text-center container">
             <div className="text-center mt-3">
-                <div className="h1">
-                    {/* <span style={{ textShadow: "1px 2px 2px slateblue", letterSpacing: 5, fontSize: 45 }} className="text-light h2">Phone</span> */}
-                    <img className="img-fluid" src="storage/Images/mesa-phone.png" alt="" loading="eager"></img>
-                    {/* <span style={{ textShadow: "1px 2px 2px slateblue", letterSpacing: 5, fontSize: 45 }} className="text-light h2">Book</span> */}
-                </div>
+                {/* <div className="h1 loader">
+                    <span style={{ textShadow: "1px 2px 2px slateblue", letterSpacing: 5, fontSize: 13, writingMode: "vertical-lr", textOrientation: "upright" }} className="text-light h2">Phone</span>
+                    <img className="img-fluid" src="http://www.mpsaz.org/phonebook/images/site-logo-522e280db270a.png" alt="" loading="eager"></img>
+                    <span style={{ textShadow: "1px 2px 2px slateblue", letterSpacing: 5, fontSize: 45 }} className="text-light h2">Book</span>
+                </div> */}
                 <p className="lead">
                     Search by first/last name or job title...
                 </p>
@@ -219,10 +219,10 @@ const Contacts = () => {
                             postsList :
                             results.length ?
                                 resultsList :
-                                <li className="contact-item text-dark mt-5">
-                                    <h1 className="display-4 d-flex justify-content-center">
+                                <li className="contact-item text-light mt-5">
+                                    <h1 className="display-4 d-flex justify-content-center text-dark load">
                                         {!results.length && !posts.length ? "Loading..." : posts.length && !results.length ? "No Results..." : ""}
-                                        {/* <img className="img-fluid" src="storage/Images/mesa-phone.png" alt=""></img> */}
+                                        {/* <img className="img-fluid rounded-pill" src="http://www.mpsaz.org/phonebook/images/site-head-bg-522e280da4eb7.png" alt=""></img> */}
                                         <i className="fas fa-phone fa-pulse text-info" role="status" />
                                     </h1>
                                 </li>}
