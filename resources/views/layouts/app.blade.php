@@ -65,7 +65,7 @@
         }
 
         .bg-dark {
-            background: url("http://www.mpsaz.org/phonebook/images/site-head-bg-522e280da4eb7.png"), linear-gradient(dodgerblue, black, white);
+            background: url("storage/Images/phone-wide.png"), linear-gradient(dodgerblue, black, white);
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -93,6 +93,11 @@
             background-repeat: no-repeat;
             background-position: center;
             animation: Loading 2s infinite linear;
+            background: linear-gradient(whitesmoke, black, dodgerblue);
+        }
+
+        .close {
+            line-height: unset;
         }
 
         @media (min-width: 1200px) {

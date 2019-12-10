@@ -1,19 +1,19 @@
-import React, { useState, useContext, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useContext } from 'react';
 import Edit from './Edit';
 import useForm from './useForm';
 import useAxios from './useAxios';
 import useInterval from './useInterval';
 import PostsContext from '../posts_context';
 import SuccessContext from '../success_context';
+import SuccessAlert from './SuccessAlert';
 
 const Contacts = () => {
 
     const [count, setCount] = useState(0);
 
-    const { setPosts, posts } = useContext(PostsContext);
+    const { posts } = useContext(PostsContext);
 
-    const { successInfo, setSuccessInfo } = useContext(SuccessContext);
+    const { setSuccessInfo } = useContext(SuccessContext);
 
     const [values, handleChange, handleClearForm] = useForm({
         search: ""
@@ -29,12 +29,6 @@ const Contacts = () => {
         setResults([]);
     };
 
-    // useEffect(() => {
-    //     axios.get('/api/posts')
-    //         .then(res => setPosts(res.data))
-    //         .catch(err => console.log(err));
-    // }, []);
-
     useInterval(() => {
         if (!results.length && search) {
             setCount(count => count - 1);
@@ -45,18 +39,12 @@ const Contacts = () => {
         }
     }, 1000);
 
-    const resetSuccess = () => {
-        setSuccessInfo({
-            isSuccess: false,
-            message: ""
-        });
-    };
-
     const deleteContact = contact => {
         deletePost(contact.id);
         setSuccessInfo({
             isSuccess: true,
-            message: contact.fname + " " + contact.lname + " was deleted!"
+            message: `${contact.fname} ${contact.lname} was deleted!`,
+            image: <img style={{ height: 40, width: 40 }} src={`storage/Images/${contact.src}`} className="img-fluid card-img" alt={`${contact.fname} ${contact.lname}'s photo`} />
         })
     };
 
@@ -65,7 +53,7 @@ const Contacts = () => {
             <div style={{ paddingTop: 5 }}>
                 <div className="row border-bottom border-dark">
                     <div style={{ maxWidth: "100%", maxHeight: "100%" }} className="col-lg-4-md-6-sm-2 text-left ml-1 mb-1">
-                        <img style={{ height: 90, width: 90 }} src={`storage/Images/${contact.src}`} className="img-fluid card-img" alt={contact.lname} />
+                        <img style={{ height: 90, width: 90 }} src={`storage/Images/${contact.src}`} className="img-fluid card-img" alt={`${contact.fname} ${contact.lname}'s photo`} />
                     </div>
                     <div className="col-lg-4-md-6-sm-2 text-left ml-1">
                         <div className="font-weight-bold">{contact.fname} {contact.lname}</div>
@@ -84,7 +72,7 @@ const Contacts = () => {
                     <div className="modal-content">
                         <div className="modal-header text-white loader">
                             <h5 className="modal-title" id="exampleModalCenterTitle"><i style={{ color: "orange" }} className="fas fa-user-edit" /> Edit {contact.fname} {contact.lname}</h5>
-                            <button type="button" className="close text-danger" data-dismiss="modal" aria-label="Close">
+                            <button type="button" className="close text-light" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -99,8 +87,8 @@ const Contacts = () => {
                     <div className="modal-content">
                         <div className="modal-header text-light loader">
                             <h5 className="modal-title" id="exampleModalCenterTitle"><i className="fas fa-exclamation-triangle text-warning" /> Confirm Delete</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span style={{ color: "red" }} aria-hidden="true">&times;</span>
+                            <button type="button" className="close text-light" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div className="modal-body text-center">
@@ -108,7 +96,7 @@ const Contacts = () => {
                                 Are you sure you want to delete
                                                 <br></br>
                                 <div style={{ maxWidth: "100%", maxHeight: "100%" }}>
-                                    <img style={{ height: 40, width: 40 }} src={`storage/Images/${contact.src}`} className="img-fluid card-img mr-2" alt={contact.lname} />
+                                    <img style={{ height: 40, width: 40 }} src={`storage/Images/${contact.src}`} className="img-fluid card-img mr-2" alt={`${contact.fname} ${contact.lname}'s photo`} />
                                     {contact.fname} {contact.lname}?
                                 </div>
                             </div>
@@ -128,7 +116,7 @@ const Contacts = () => {
             <div style={{ paddingTop: 5 }}>
                 <div className="row border-bottom border-dark">
                     <div style={{ maxWidth: "100%", maxHeight: "100%" }} className="col-lg-4-md-6-sm-2 text-left ml-1 mb-1">
-                        <img style={{ height: 90, width: 90 }} src={`storage/Images/${contact.src}`} className="img-fluid card-img" alt={contact.lname} />
+                        <img style={{ height: 90, width: 90 }} src={`storage/Images/${contact.src}`} className="img-fluid card-img" alt={`${contact.fname} ${contact.lname}'s photo`} />
                     </div>
                     <div className="col-lg-4-md-6-sm-2 text-left ml-1">
                         <div className="font-weight-bold">{contact.fname} {contact.lname}</div>
@@ -147,7 +135,7 @@ const Contacts = () => {
                     <div className="modal-content">
                         <div className="modal-header text-white loader">
                             <h5 className="modal-title" id="exampleModalCenterTitle"><i style={{ color: "orange" }} className="fas fa-user-edit" /> Edit {contact.fname} {contact.lname}</h5>
-                            <button type="button" className="close text-danger" data-dismiss="modal" aria-label="Close">
+                            <button type="button" className="close text-light" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -162,8 +150,8 @@ const Contacts = () => {
                     <div className="modal-content">
                         <div className="modal-header text-light loader">
                             <h5 className="modal-title" id="exampleModalCenterTitle"><i className="fas fa-exclamation-triangle text-warning" /> Confirm Delete</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span style={{ color: "red" }} aria-hidden="true">&times;</span>
+                            <button type="button" className="close text-light" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div className="modal-body text-center">
@@ -171,13 +159,13 @@ const Contacts = () => {
                                 Are you sure you want to delete
                                                 <br></br>
                                 <div style={{ maxWidth: "100%", maxHeight: "100%" }}>
-                                    <img style={{ height: 40, width: 40 }} src={`storage/Images/${contact.src}`} className="img-fluid card-img mr-2" alt={contact.lname} />
+                                    <img style={{ height: 40, width: 40 }} src={`storage/Images/${contact.src}`} className="img-fluid card-img mr-2" alt={`${contact.fname} ${contact.lname}'s photo`} />
                                     {contact.fname} {contact.lname}?
                                 </div>
                             </div>
                             <div style={{ borderTop: "unset" }} className="modal-footer">
                                 <button onClick={() => deleteContact(contact)} type="button" data-dismiss="modal" className="btn btn-dark btn-sm"><i className="fas fa-check fa-fw text-success" /> Yes</button>
-                                <button type="button" className="btn btn-dark btn-sm" data-dismiss="modal"><i className="fas fa-times fa-fw text-danger" /> No</button>
+                                <button type="button" className="btn btn-dark btn-sm" data-dismiss="modal"><i style={{ color: "tomato" }} className="fas fa-times fa-fw" /> No</button>
                             </div>
                         </div>
                     </div>
@@ -195,7 +183,7 @@ const Contacts = () => {
                     <span style={{ textShadow: "1px 2px 2px slateblue", letterSpacing: 5, fontSize: 45 }} className="text-light h2">Book</span>
                 </div> */}
                 <p className="lead">
-                    Search by first/last name or job title...
+                    Search by name in any order or phone number
                 </p>
                 <div className="col-md-6 offset-md-3">
                     <form onSubmit={handleSubmit} className="input-group mb-3 my-lg-3">
@@ -206,12 +194,7 @@ const Contacts = () => {
                     </form>
                 </div>
             </div>
-            <div style={successInfo.isSuccess ? { display: "block" } : { display: "none" }} id="success-alert" className="alert alert-success fade show" role="alert">
-                <i className="fas fa-check text-success" /> {successInfo.message}
-                <button onClick={resetSuccess} type="button" className="close" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+            <SuccessAlert />
             <div className="mb-5">
                 <div className='text-center'>
                     <ul className='list-unstyled'>

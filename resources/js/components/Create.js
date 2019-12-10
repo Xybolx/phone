@@ -16,7 +16,7 @@ const Create = () => {
 
     const [filename, setFilename] = useState("");
 
-    const { setPosts } = useContext(PostsContext);
+    const { posts, setPosts } = useContext(PostsContext);
 
     const { setSuccessInfo } = useContext(SuccessContext);
 
@@ -68,6 +68,7 @@ const Create = () => {
         resetValidate();
         handleClearForm();
         $('#navbarsExampleDefault').collapse('hide');
+        $('#exampleModalCenter').modal('hide');
         setRedirect(true);
     };
 

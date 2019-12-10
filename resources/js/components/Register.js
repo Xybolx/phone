@@ -29,7 +29,7 @@ const Register = () => {
         <div className="modal fade" id="registerModalCenter" tabIndex="-1" role="dialog" aria-labelledby="registerModalCenterTitle" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
-                    <div className="modal-header text-white border-0 bg-dark">
+                    <div className="modal-header bg-dark text-light border-0">
                         <h5 className="modal-title" id="registerModalCenterTitle"><i style={{ color: "cyan" }} className="fas fa-address-card fa-fw" /> Register</h5>
                         <button type="button" className="close text-light" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -58,7 +58,7 @@ const Register = () => {
                                         <SubmitBtn
                                             disabled={!email || !password}
                                             icon={<i style={{ color: "cyan" }} className="fas fa-address-card fa-fw" />}
-                                            text="Submit"
+                                            text="Register"
                                         />
                                         <CancelBtn
                                             className="btn btn-dark ml-2"
